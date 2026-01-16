@@ -9,8 +9,7 @@ public static class ProductEndpoints
     public static void MapProductEndpoints(this IEndpointRouteBuilder app)
     {
         var group = app.MapGroup("/api/v1/products")
-            .WithTags("Products")
-            .WithOpenApi();
+            .WithTags("Products");
 
         group.MapGet("/{barcode}", GetByBarcode)
             .WithName("GetProductByBarcode")

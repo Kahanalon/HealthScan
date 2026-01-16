@@ -9,8 +9,7 @@ public static class OcrEndpoints
     public static void MapOcrEndpoints(this IEndpointRouteBuilder app)
     {
         var group = app.MapGroup("/api/v1/ocr")
-            .WithTags("OCR")
-            .WithOpenApi();
+            .WithTags("OCR");
 
         group.MapPost("/nutrition", ProcessNutrition)
             .WithName("ProcessNutritionImage")

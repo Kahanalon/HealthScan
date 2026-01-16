@@ -12,7 +12,6 @@ public static class HealthEndpoints
         }))
         .WithName("HealthCheck")
         .WithTags("Health")
-        .WithOpenApi()
         .WithSummary("Health check endpoint");
 
         app.MapGet("/api/v1/health", () => Results.Ok(new
@@ -23,7 +22,6 @@ public static class HealthEndpoints
         }))
         .WithName("ApiHealthCheck")
         .WithTags("Health")
-        .WithOpenApi()
         .WithSummary("API health check endpoint");
     }
 }

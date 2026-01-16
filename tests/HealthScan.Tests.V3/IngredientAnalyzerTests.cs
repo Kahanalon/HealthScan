@@ -3,7 +3,7 @@ using HealthScan.Application.Scoring;
 using HealthScan.Domain.Enums;
 using Xunit;
 
-namespace HealthScan.Tests;
+namespace HealthScan.Tests.V3;
 
 public class IngredientAnalyzerTests
 {

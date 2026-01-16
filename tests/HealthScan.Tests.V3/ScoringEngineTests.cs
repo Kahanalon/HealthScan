@@ -4,7 +4,7 @@ using HealthScan.Domain.Entities;
 using HealthScan.Domain.Enums;
 using Xunit;
 
-namespace HealthScan.Tests;
+namespace HealthScan.Tests.V3;
 
 public class ScoringEngineTests
 {
