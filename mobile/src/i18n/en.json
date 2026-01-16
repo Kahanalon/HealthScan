@@ -1,0 +1,89 @@
+{
+  "common": {
+    "loading": "Loading...",
+    "error": "Error",
+    "retry": "Retry",
+    "cancel": "Cancel",
+    "confirm": "Confirm",
+    "save": "Save",
+    "delete": "Delete",
+    "search": "Search",
+    "back": "Back",
+    "close": "Close",
+    "offline": "Offline"
+  },
+  "home": {
+    "title": "HealthScan",
+    "subtitle": "Scan food products to check nutritional values",
+    "scanButton": "Scan Barcode",
+    "searchPlaceholder": "Search for a product...",
+    "recentScans": "Recent Scans",
+    "noRecentScans": "No recent scans",
+    "viewAll": "View All"
+  },
+  "scanner": {
+    "title": "Scan Barcode",
+    "instruction": "Point the camera at a barcode",
+    "torch": "Torch",
+    "permissionDenied": "Camera permission is required",
+    "requestPermission": "Grant Permission"
+  },
+  "result": {
+    "title": "Results",
+    "nutriScore": "Nutri-Score",
+    "nutritionFacts": "Nutrition Facts per 100g",
+    "energy": "Energy",
+    "fat": "Fat",
+    "saturatedFat": "Saturated Fat",
+    "carbohydrates": "Carbohydrates",
+    "sugars": "Sugars",
+    "fiber": "Fiber",
+    "protein": "Protein",
+    "salt": "Salt",
+    "flags": "Warnings",
+    "ingredients": "Ingredients",
+    "allergens": "Allergens",
+    "notFound": "Product not found",
+    "notFoundDescription": "Would you like to contribute information about this product?",
+    "contribute": "Contribute Info",
+    "disclaimer": "Information is based on external data sources and may not be up to date. Always check the label before consumption.",
+    "cachedData": "Cached data"
+  },
+  "contribute": {
+    "title": "Contribute Information",
+    "instruction": "Take photos of the nutrition label and ingredients list",
+    "nutritionLabel": "Nutrition Label",
+    "ingredientsList": "Ingredients List",
+    "takePhoto": "Take Photo",
+    "retake": "Retake",
+    "submit": "Submit",
+    "submitting": "Submitting...",
+    "success": "Thank you for your contribution!",
+    "error": "Error submitting, please try again"
+  },
+  "history": {
+    "title": "Scan History",
+    "empty": "No scans in history",
+    "clearHistory": "Clear History",
+    "clearConfirm": "Delete all history?"
+  },
+  "search": {
+    "title": "Search",
+    "placeholder": "Enter product name...",
+    "noResults": "No results found",
+    "searching": "Searching..."
+  },
+  "grades": {
+    "A": "Excellent nutritional quality",
+    "B": "Good nutritional quality",
+    "C": "Average nutritional quality",
+    "D": "Poor nutritional quality",
+    "E": "Bad nutritional quality",
+    "Unknown": "Unknown"
+  },
+  "flags": {
+    "high": "High",
+    "moderate": "Moderate",
+    "low": "Low"
+  }
+}

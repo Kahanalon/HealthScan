@@ -1,0 +1,89 @@
+{
+  "common": {
+    "loading": "טוען...",
+    "error": "שגיאה",
+    "retry": "נסה שוב",
+    "cancel": "ביטול",
+    "confirm": "אישור",
+    "save": "שמירה",
+    "delete": "מחיקה",
+    "search": "חיפוש",
+    "back": "חזרה",
+    "close": "סגירה",
+    "offline": "אופליין"
+  },
+  "home": {
+    "title": "HealthScan",
+    "subtitle": "סרוק מוצרי מזון לבדיקת ערכים תזונתיים",
+    "scanButton": "סרוק ברקוד",
+    "searchPlaceholder": "חפש מוצר...",
+    "recentScans": "סריקות אחרונות",
+    "noRecentScans": "אין סריקות אחרונות",
+    "viewAll": "הצג הכל"
+  },
+  "scanner": {
+    "title": "סרוק ברקוד",
+    "instruction": "כוון את המצלמה לברקוד",
+    "torch": "פנס",
+    "permissionDenied": "יש לאשר גישה למצלמה",
+    "requestPermission": "אשר גישה"
+  },
+  "result": {
+    "title": "תוצאות",
+    "nutriScore": "ציון תזונתי",
+    "nutritionFacts": "ערכים תזונתיים ל-100 גרם",
+    "energy": "אנרגיה",
+    "fat": "שומן",
+    "saturatedFat": "שומן רווי",
+    "carbohydrates": "פחמימות",
+    "sugars": "סוכרים",
+    "fiber": "סיבים תזונתיים",
+    "protein": "חלבון",
+    "salt": "מלח",
+    "flags": "התראות",
+    "ingredients": "רכיבים",
+    "allergens": "אלרגנים",
+    "notFound": "המוצר לא נמצא",
+    "notFoundDescription": "האם תרצה לתרום מידע על מוצר זה?",
+    "contribute": "תרום מידע",
+    "disclaimer": "המידע מבוסס על נתונים ממקורות חיצוניים ועשוי לא להיות מעודכן. בדקו תמיד את התווית לפני הצריכה.",
+    "cachedData": "נתונים מהמטמון"
+  },
+  "contribute": {
+    "title": "תרום מידע",
+    "instruction": "צלם את טבלת הערכים התזונתיים ורשימת הרכיבים",
+    "nutritionLabel": "טבלה תזונתית",
+    "ingredientsList": "רשימת רכיבים",
+    "takePhoto": "צלם תמונה",
+    "retake": "צלם מחדש",
+    "submit": "שלח",
+    "submitting": "שולח...",
+    "success": "תודה על התרומה!",
+    "error": "שגיאה בשליחה, נסה שוב"
+  },
+  "history": {
+    "title": "היסטוריית סריקות",
+    "empty": "אין סריקות בהיסטוריה",
+    "clearHistory": "נקה היסטוריה",
+    "clearConfirm": "האם למחוק את כל ההיסטוריה?"
+  },
+  "search": {
+    "title": "חיפוש",
+    "placeholder": "הקלד שם מוצר...",
+    "noResults": "לא נמצאו תוצאות",
+    "searching": "מחפש..."
+  },
+  "grades": {
+    "A": "איכות תזונתית מעולה",
+    "B": "איכות תזונתית טובה",
+    "C": "איכות תזונתית בינונית",
+    "D": "איכות תזונתית נמוכה",
+    "E": "איכות תזונתית נמוכה מאוד",
+    "Unknown": "לא ידוע"
+  },
+  "flags": {
+    "high": "גבוה",
+    "moderate": "בינוני",
+    "low": "נמוך"
+  }
+}
