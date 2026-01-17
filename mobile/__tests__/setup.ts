@@ -81,4 +81,6 @@ jest.mock('react-i18next', () => ({
   },
 }));
 
-global.__DEV__ = true;
+(global as any).__DEV__ = true;
+
+export {};

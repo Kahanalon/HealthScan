@@ -1,5 +1,7 @@
 import { NutriScoreGrade, NutrientFlag, NutritionInfo } from './Product';
 
+export type { NutriScoreGrade };
+
 export interface ScoreResult {
   barcode: string;
   productName: string;
