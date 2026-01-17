@@ -40,6 +40,7 @@ public static class DependencyInjection
 
         services.AddScoped<IProductService, ProductService>();
         services.AddScoped<IOcrOrchestrator, OcrOrchestrator>();
+        services.AddScoped<IImportService, ImportService>();
 
         return services;
     }

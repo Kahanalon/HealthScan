@@ -13,14 +13,14 @@ public class ProductConfiguration : IEntityTypeConfiguration<Product>
         builder.HasKey(p => p.Id);
         builder.Property(p => p.Id).HasColumnName("id");
 
-        builder.Property(p => p.Barcode).HasColumnName("barcode").HasMaxLength(20).IsRequired();
+        builder.Property(p => p.Barcode).HasColumnName("barcode").HasMaxLength(50).IsRequired();
         builder.HasIndex(p => p.Barcode).IsUnique();
 
         builder.Property(p => p.NameHe).HasColumnName("name_he").HasMaxLength(500);
         builder.Property(p => p.NameEn).HasColumnName("name_en").HasMaxLength(500);
-        builder.Property(p => p.Brand).HasColumnName("brand").HasMaxLength(200);
-        builder.Property(p => p.PackageSize).HasColumnName("package_size").HasMaxLength(100);
-        builder.Property(p => p.Category).HasColumnName("category").HasMaxLength(200);
+        builder.Property(p => p.Brand).HasColumnName("brand").HasMaxLength(500);
+        builder.Property(p => p.PackageSize).HasColumnName("package_size").HasMaxLength(300);
+        builder.Property(p => p.Category).HasColumnName("category").HasMaxLength(500);
 
         builder.Property(p => p.Energy100g).HasColumnName("energy_100g").HasPrecision(10, 2);
         builder.Property(p => p.Fat100g).HasColumnName("fat_100g").HasPrecision(10, 2);

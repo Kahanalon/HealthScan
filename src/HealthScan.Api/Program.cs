@@ -68,5 +68,6 @@ app.UseSerilogRequestLogging();
 app.MapHealthEndpoints();
 app.MapProductEndpoints();
 app.MapOcrEndpoints();
+app.MapAdminEndpoints();
 
 app.Run();

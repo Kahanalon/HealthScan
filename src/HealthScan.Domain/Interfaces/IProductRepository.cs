@@ -11,4 +11,6 @@ public interface IProductRepository
     Task<Product> AddAsync(Product product, CancellationToken cancellationToken = default);
     Task<Product> UpdateAsync(Product product, CancellationToken cancellationToken = default);
     Task<bool> ExistsAsync(string barcode, CancellationToken cancellationToken = default);
+    Task<int> BulkInsertAsync(IEnumerable<Product> products, CancellationToken cancellationToken = default);
+    Task<int> GetTotalCountAsync(CancellationToken cancellationToken = default);
 }

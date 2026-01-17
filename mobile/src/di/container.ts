@@ -21,6 +21,8 @@ export interface DIContainer {
   productService: ProductService;
 }
 
+// For physical Android device: replace 'localhost' with your computer's local IP (run 'ipconfig' to find it)
+// For emulator: use 'http://10.0.2.2:5000' (Android emulator's alias for host localhost)
 const API_BASE_URL = __DEV__
   ? 'http://localhost:5000'
   : 'https://api.healthscan.co.il';

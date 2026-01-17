@@ -79,4 +79,35 @@ public class EfProductRepository : IProductRepository
     {
         return await _context.Products.AnyAsync(p => p.Barcode == barcode, cancellationToken);
     }
+
+    public async Task<int> BulkInsertAsync(IEnumerable<Product> products, CancellationToken cancellationToken = default)
+    {
+        var existingBarcodes = await _context.Products
+            .Select(p => p.Barcode)
+            .ToHashSetAsync(cancellationToken);
+
+        var newProducts = products
+            .Where(p => !existingBarcodes.Contains(p.Barcode))
+            .Select(p =>
+            {
+                p.Id = Guid.NewGuid();
+                p.CreatedAt = DateTime.UtcNow;
+                p.LastUpdated = DateTime.UtcNow;
+                return p;
+            })
+            .ToList();
+
+        if (newProducts.Count == 0)
+            return 0;
+
+        await _context.Products.AddRangeAsync(newProducts, cancellationToken);
+        await _context.SaveChangesAsync(cancellationToken);
+
+        return newProducts.Count;
+    }
+
+    public async Task<int> GetTotalCountAsync(CancellationToken cancellationToken = default)
+    {
+        return await _context.Products.CountAsync(cancellationToken);
+    }
 }

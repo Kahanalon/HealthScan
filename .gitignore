@@ -89,3 +89,14 @@ mobile/*.jsbundle
 *.log
 *.tmp
 *.temp
+
+# Claude Code temp files
+tmpclaude-*
+nul
+
+# React Native generated Android folder (regenerate with npx react-native init)
+mobile/android/
+mobile/ios/
+
+# Local properties
+mobile/android/local.properties

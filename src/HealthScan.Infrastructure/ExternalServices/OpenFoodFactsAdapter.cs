@@ -91,6 +91,74 @@ public class OpenFoodFactsAdapter : IProductDataSource
         }
     }
 
+    public async Task<List<Product>> FetchIsraeliProductsAsync(int page, int pageSize, CancellationToken cancellationToken = default)
+    {
+        try
+        {
+            var url = $"{BaseUrl}/search?countries_tags=israel&page={page}&page_size={pageSize}&json=1&fields=code,product_name,product_name_he,product_name_en,brands,quantity,categories,ingredients_text,ingredients_text_he,ingredients_text_en,image_front_url,image_nutrition_url,image_ingredients_url,nutriments";
+            _logger.LogInformation("Fetching Israeli products page {Page} from Open Food Facts", page);
+
+            var response = await _httpClient.GetAsync(url, cancellationToken);
+
+            if (!response.IsSuccessStatusCode)
+            {
+                _logger.LogWarning("Open Food Facts returned {StatusCode} for Israeli products fetch", response.StatusCode);
+                return new List<Product>();
+            }
+
+            var json = await response.Content.ReadAsStringAsync(cancellationToken);
+            var searchResponse = JsonSerializer.Deserialize<OpenFoodFactsSearchResponse>(json, new JsonSerializerOptions
+            {
+                PropertyNameCaseInsensitive = true
+            });
+
+            if (searchResponse?.Products == null)
+            {
+                return new List<Product>();
+            }
+
+            var products = searchResponse.Products
+                .Where(p => !string.IsNullOrEmpty(p.Code))
+                .Select(p => MapToProduct(p, p.Code!))
+                .ToList();
+
+            _logger.LogInformation("Fetched {Count} Israeli products from page {Page}", products.Count, page);
+            return products;
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Error fetching Israeli products from Open Food Facts page {Page}", page);
+            return new List<Product>();
+        }
+    }
+
+    public async Task<int> GetIsraeliProductCountAsync(CancellationToken cancellationToken = default)
+    {
+        try
+        {
+            var url = $"{BaseUrl}/search?countries_tags=israel&page=1&page_size=1&json=1&fields=code";
+            var response = await _httpClient.GetAsync(url, cancellationToken);
+
+            if (!response.IsSuccessStatusCode)
+            {
+                return 0;
+            }
+
+            var json = await response.Content.ReadAsStringAsync(cancellationToken);
+            var searchResponse = JsonSerializer.Deserialize<OpenFoodFactsCountResponse>(json, new JsonSerializerOptions
+            {
+                PropertyNameCaseInsensitive = true
+            });
+
+            return searchResponse?.Count ?? 0;
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Error getting Israeli product count from Open Food Facts");
+            return 0;
+        }
+    }
+
     private Product MapToProduct(OpenFoodFactsProduct offProduct, string barcode)
     {
         var nutriments = offProduct.Nutriments ?? new OpenFoodFactsNutriments();
@@ -134,6 +202,12 @@ internal class OpenFoodFactsResponse
 internal class OpenFoodFactsSearchResponse
 {
     public List<OpenFoodFactsProduct>? Products { get; set; }
+    public int Count { get; set; }
+}
+
+internal class OpenFoodFactsCountResponse
+{
+    public int Count { get; set; }
 }
 
 internal class OpenFoodFactsProduct
