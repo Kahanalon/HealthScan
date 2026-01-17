@@ -13,19 +13,24 @@ export class VisionCameraImage implements IImageService {
       throw new Error('Camera not initialized');
     }
 
-    const photo: PhotoFile = await this.cameraRef.current.takePhoto({
-      flash: options?.flash ?? 'off',
-      enableShutterSound: false,
-    });
+    try {
+      const photo: PhotoFile = await this.cameraRef.current.takePhoto({
+        flash: options?.flash ?? 'off',
+        enableShutterSound: false,
+      });
 
-    const base64 = await this.readFileAsBase64(photo.path);
+      const base64 = await this.readFileAsBase64(photo.path);
 
-    return {
-      base64,
-      width: photo.width,
-      height: photo.height,
-      uri: `file://${photo.path}`,
-    };
+      return {
+        base64,
+        width: photo.width,
+        height: photo.height,
+        uri: `file://${photo.path}`,
+      };
+    } catch (error) {
+      const message = error instanceof Error ? error.message : 'Unknown error';
+      throw new Error(`Failed to capture image: ${message}`);
+    }
   }
 
   async pickFromGallery(): Promise<CapturedImage | null> {

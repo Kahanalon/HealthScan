@@ -5,10 +5,21 @@ import { ScanHistory } from '../../core/entities/ScanHistory';
 import CachedProductModel from './models/CachedProductModel';
 import ScanHistoryModel from './models/ScanHistoryModel';
 
+interface CachedProductRaw {
+  _raw: {
+    nutrition_json: string;
+    allergens_json: string;
+    categories_json: string;
+    flags_json: string;
+  };
+}
+
 const DEFAULT_TTL_MINUTES = 60 * 24;
 
 export class WatermelonRepository implements ICacheRepository {
-  constructor(private database: Database) {}
+  constructor(private database: Database) {
+    this.clearExpiredCache().catch(() => {});
+  }
 
   async getProduct(barcode: string): Promise<CachedProduct | null> {
     const collection = this.database.get<CachedProductModel>('cached_products');
@@ -35,16 +46,17 @@ export class WatermelonRepository implements ICacheRepository {
 
       if (existing.length > 0) {
         await existing[0].update((record) => {
+          const rawRecord = record as CachedProductModel & CachedProductRaw;
           record.name = product.name;
           record.brand = product.brand;
           record.imageUrl = product.imageUrl;
           record.nutriScoreGrade = product.nutriScoreGrade;
           record.nutriScoreScore = product.nutriScoreScore;
-          (record as any)._raw.nutrition_json = JSON.stringify(product.nutritionPer100g);
+          rawRecord._raw.nutrition_json = JSON.stringify(product.nutritionPer100g);
           record.ingredients = product.ingredients;
-          (record as any)._raw.allergens_json = JSON.stringify(product.allergens);
-          (record as any)._raw.categories_json = JSON.stringify(product.categories);
-          (record as any)._raw.flags_json = JSON.stringify(product.flags);
+          rawRecord._raw.allergens_json = JSON.stringify(product.allergens);
+          rawRecord._raw.categories_json = JSON.stringify(product.categories);
+          rawRecord._raw.flags_json = JSON.stringify(product.flags);
           record.dataSource = product.dataSource;
           record.lastUpdated = product.lastUpdated;
           record.cachedAt = now;
@@ -52,17 +64,18 @@ export class WatermelonRepository implements ICacheRepository {
         });
       } else {
         await collection.create((record) => {
+          const rawRecord = record as CachedProductModel & CachedProductRaw;
           record.barcode = product.barcode;
           record.name = product.name;
           record.brand = product.brand;
           record.imageUrl = product.imageUrl;
           record.nutriScoreGrade = product.nutriScoreGrade;
           record.nutriScoreScore = product.nutriScoreScore;
-          (record as any)._raw.nutrition_json = JSON.stringify(product.nutritionPer100g);
+          rawRecord._raw.nutrition_json = JSON.stringify(product.nutritionPer100g);
           record.ingredients = product.ingredients;
-          (record as any)._raw.allergens_json = JSON.stringify(product.allergens);
-          (record as any)._raw.categories_json = JSON.stringify(product.categories);
-          (record as any)._raw.flags_json = JSON.stringify(product.flags);
+          rawRecord._raw.allergens_json = JSON.stringify(product.allergens);
+          rawRecord._raw.categories_json = JSON.stringify(product.categories);
+          rawRecord._raw.flags_json = JSON.stringify(product.flags);
           record.dataSource = product.dataSource;
           record.lastUpdated = product.lastUpdated;
           record.cachedAt = now;

@@ -24,6 +24,8 @@ public static class OcrEndpoints
             .Produces(StatusCodes.Status400BadRequest);
     }
 
+    private const int MaxBase64Length = 10_000_000;
+
     private static async Task<IResult> ProcessNutrition(
         [FromBody] OcrRequestDto request,
         [FromServices] IOcrOrchestrator ocrOrchestrator,
@@ -34,13 +36,19 @@ public static class OcrEndpoints
             return Results.BadRequest(new { error = "Image data is required" });
         }
 
+        if (request.ImageBase64.Length > MaxBase64Length)
+        {
+            return Results.BadRequest(new { error = "Image too large" });
+        }
+
         byte[] imageData;
         try
         {
             var base64Data = request.ImageBase64;
             if (base64Data.Contains(","))
             {
-                base64Data = base64Data.Split(',')[1];
+                var parts = base64Data.Split(',');
+                base64Data = parts.Length > 1 ? parts[1] : base64Data;
             }
             imageData = Convert.FromBase64String(base64Data);
         }
@@ -63,13 +71,19 @@ public static class OcrEndpoints
             return Results.BadRequest(new { error = "Image data is required" });
         }
 
+        if (request.ImageBase64.Length > MaxBase64Length)
+        {
+            return Results.BadRequest(new { error = "Image too large" });
+        }
+
         byte[] imageData;
         try
         {
             var base64Data = request.ImageBase64;
             if (base64Data.Contains(","))
             {
-                base64Data = base64Data.Split(',')[1];
+                var parts = base64Data.Split(',');
+                base64Data = parts.Length > 1 ? parts[1] : base64Data;
             }
             imageData = Convert.FromBase64String(base64Data);
         }

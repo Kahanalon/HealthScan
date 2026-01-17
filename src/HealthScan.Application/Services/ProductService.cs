@@ -132,7 +132,7 @@ public class ProductService : IProductService
         var contribution = new ProductContribution
         {
             Id = Guid.NewGuid(),
-            ProductId = product?.Id,
+            ProductId = product?.Id ?? Guid.Empty,
             Barcode = barcode,
             FieldName = request.FieldName,
             DeviceId = request.DeviceId,

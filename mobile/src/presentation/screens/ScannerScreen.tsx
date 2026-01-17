@@ -28,15 +28,7 @@ export default function ScannerScreen() {
   const [hasPermission, setHasPermission] = React.useState<boolean | null>(null);
   const lastScannedRef = useRef<string | null>(null);
 
-  useEffect(() => {
-    checkPermissions();
-    setScanning();
-    return () => {
-      barcodeScanner.stopScanning();
-    };
-  }, []);
-
-  async function checkPermissions() {
+  const checkPermissions = useCallback(async () => {
     const granted = await barcodeScanner.hasPermissions();
     if (granted) {
       setHasPermission(true);
@@ -44,14 +36,22 @@ export default function ScannerScreen() {
       const result = await barcodeScanner.requestPermissions();
       setHasPermission(result);
     }
-  }
+  }, [barcodeScanner]);
+
+  useEffect(() => {
+    checkPermissions();
+    setScanning();
+    return () => {
+      barcodeScanner.stopScanning();
+    };
+  }, [checkPermissions, setScanning, barcodeScanner]);
 
   const handleCodeScanned = useCallback(
-    (codes: { type: string; value: string }[]) => {
+    (codes: { type: string; value?: string }[]) => {
       if (codes.length === 0 || currentScan.state === 'loading') return;
 
       const code = codes[0];
-      if (code.value === lastScannedRef.current) return;
+      if (!code.value || code.value === lastScannedRef.current) return;
 
       lastScannedRef.current = code.value;
       scanBarcode(code.value);
@@ -69,9 +69,9 @@ export default function ScannerScreen() {
     toggleTorch();
   }
 
-  function handleRequestPermission() {
+  const handleRequestPermission = useCallback(() => {
     checkPermissions();
-  }
+  }, [checkPermissions]);
 
   if (hasPermission === null) {
     return (
