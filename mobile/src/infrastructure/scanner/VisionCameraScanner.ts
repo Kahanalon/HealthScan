@@ -1,4 +1,4 @@
-import { Camera, CameraDevice, useCameraDevice, useCodeScanner } from 'react-native-vision-camera';
+import { Camera } from 'react-native-vision-camera';
 import {
   IBarcodeScanner,
   ScannedBarcode,
@@ -106,7 +106,9 @@ export class VisionCameraScanner implements IBarcodeScanner {
 
     return this.config.formats
       .map((f) => {
-        if (f === 'qr') return 'qr-code' as VisionCameraCodeType;
+        if (f === 'qr') {
+          return 'qr-code' as VisionCameraCodeType;
+        }
         return f as VisionCameraCodeType;
       })
       .filter((f): f is VisionCameraCodeType => f !== 'unknown');

@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen, fireEvent, waitFor } from '@testing-library/react-native';
+import { screen, fireEvent, waitFor } from '@testing-library/react-native';
 import ResultScreen from '../../../src/presentation/screens/ResultScreen';
 import { renderWithProviders, createTestContainer } from '../../utils/testUtils';
 import { MockApiClient } from '../../mocks/MockApiClient';

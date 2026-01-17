@@ -6,7 +6,6 @@ import {
   OcrResponse,
 } from '../../src/core/interfaces/IApiClient';
 import { ContributionData, Product } from '../../src/core/entities/Product';
-import { createMockProduct } from './mockData';
 
 export class MockApiClient implements IApiClient {
   private products: Map<string, Product> = new Map();
@@ -88,7 +87,7 @@ export class MockApiClient implements IApiClient {
     };
   }
 
-  async contributeProduct(barcode: string, data: ContributionData): Promise<ContributionResponse> {
+  async contributeProduct(barcode: string, _data: ContributionData): Promise<ContributionResponse> {
     if (this.shouldFail) {
       return {
         success: false,
@@ -107,7 +106,7 @@ export class MockApiClient implements IApiClient {
     };
   }
 
-  async processNutritionOcr(imageBase64: string, barcode: string): Promise<OcrResponse> {
+  async processNutritionOcr(_imageBase64: string, _barcode: string): Promise<OcrResponse> {
     if (this.shouldFail) {
       return {
         success: false,
@@ -131,7 +130,7 @@ export class MockApiClient implements IApiClient {
     };
   }
 
-  async processIngredientsOcr(imageBase64: string, barcode: string): Promise<OcrResponse> {
+  async processIngredientsOcr(_imageBase64: string, _barcode: string): Promise<OcrResponse> {
     if (this.shouldFail) {
       return {
         success: false,

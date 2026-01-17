@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useCallback } from 'react';
 import {
   View,
   Text,
@@ -42,14 +42,7 @@ export default function ContributeScreen() {
 
   const contributeMutation = useContribute();
 
-  React.useEffect(() => {
-    checkPermissions();
-    if (cameraRef.current) {
-      visionCameraImage.setCameraRef(cameraRef as React.RefObject<Camera>);
-    }
-  }, []);
-
-  async function checkPermissions() {
+  const checkPermissions = useCallback(async () => {
     const granted = await barcodeScanner.hasPermissions();
     if (granted) {
       setHasPermission(true);
@@ -57,7 +50,14 @@ export default function ContributeScreen() {
       const result = await barcodeScanner.requestPermissions();
       setHasPermission(result);
     }
-  }
+  }, [barcodeScanner]);
+
+  React.useEffect(() => {
+    checkPermissions();
+    if (cameraRef.current) {
+      visionCameraImage.setCameraRef(cameraRef as React.RefObject<Camera>);
+    }
+  }, [checkPermissions]);
 
   async function handleCapture() {
     try {
@@ -85,7 +85,9 @@ export default function ContributeScreen() {
   }
 
   async function handleSubmit() {
-    if (!nutritionImage) return;
+    if (!nutritionImage) {
+      return;
+    }
 
     try {
       await contributeMutation.mutateAsync({

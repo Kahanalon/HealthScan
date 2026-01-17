@@ -10,7 +10,9 @@ export function useProduct(barcode: string | null) {
   return useQuery<ScoreResult | null, Error>({
     queryKey: ['product', barcode, locale],
     queryFn: async () => {
-      if (!barcode) return null;
+      if (!barcode) {
+        return null;
+      }
       return productService.getProduct(barcode, locale);
     },
     enabled: !!barcode,

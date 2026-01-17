@@ -193,7 +193,9 @@ export class AxiosApiClient implements IApiClient {
   }
 
   private mapProductResponse(data: any): Product | null {
-    if (!data) return null;
+    if (!data) {
+      return null;
+    }
     return {
       barcode: data.barcode,
       name: data.name ?? data.nameEn ?? '',

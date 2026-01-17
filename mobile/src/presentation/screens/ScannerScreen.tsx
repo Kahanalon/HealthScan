@@ -48,10 +48,14 @@ export default function ScannerScreen() {
 
   const handleCodeScanned = useCallback(
     (codes: { type: string; value?: string }[]) => {
-      if (codes.length === 0 || currentScan.state === 'loading') return;
+      if (codes.length === 0 || currentScan.state === 'loading') {
+        return;
+      }
 
       const code = codes[0];
-      if (!code.value || code.value === lastScannedRef.current) return;
+      if (!code.value || code.value === lastScannedRef.current) {
+        return;
+      }
 
       lastScannedRef.current = code.value;
       scanBarcode(code.value);

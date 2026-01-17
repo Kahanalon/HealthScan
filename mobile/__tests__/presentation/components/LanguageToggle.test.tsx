@@ -2,7 +2,6 @@ import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react-native';
 import LanguageToggle from '../../../src/presentation/components/LanguageToggle';
 import { useAppStore } from '../../../src/stores/useAppStore';
-import { setLanguage } from '../../../src/i18n';
 
 jest.mock('../../../src/stores/useAppStore');
 jest.mock('../../../src/i18n', () => ({

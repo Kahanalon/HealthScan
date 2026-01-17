@@ -1,4 +1,4 @@
-import { createScanHistoryId, ScanHistory } from '../../src/core/entities/ScanHistory';
+import { createScanHistoryId } from '../../src/core/entities/ScanHistory';
 
 describe('ScanHistory', () => {
   describe('createScanHistoryId', () => {

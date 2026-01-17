@@ -19,6 +19,10 @@ import ProductCard from '../components/ProductCard';
 
 type HistoryScreenNavProp = NativeStackNavigationProp<RootStackParamList, 'History'>;
 
+function ListSeparator() {
+  return <View style={styles.separator} />;
+}
+
 export default function HistoryScreen() {
   const { t } = useTranslation();
   const navigation = useNavigation<HistoryScreenNavProp>();
@@ -93,7 +97,7 @@ export default function HistoryScreen() {
           renderItem={renderScanItem}
           keyExtractor={(item) => item.id}
           contentContainerStyle={styles.listContent}
-          ItemSeparatorComponent={() => <View style={styles.separator} />}
+          ItemSeparatorComponent={ListSeparator}
         />
       ) : (
         <View style={styles.emptyContainer}>

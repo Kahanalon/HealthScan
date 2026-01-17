@@ -5,7 +5,7 @@ jest.mock('../../../src/i18n', () => ({
 }));
 
 import React from 'react';
-import { render, screen, fireEvent, waitFor } from '@testing-library/react-native';
+import { screen, fireEvent, waitFor } from '@testing-library/react-native';
 import HomeScreen from '../../../src/presentation/screens/HomeScreen';
 import { renderWithProviders, createTestContainer } from '../../utils/testUtils';
 import { MockCacheRepository } from '../../mocks/MockCacheRepository';

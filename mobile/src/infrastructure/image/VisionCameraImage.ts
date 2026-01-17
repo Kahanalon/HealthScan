@@ -39,8 +39,8 @@ export class VisionCameraImage implements IImageService {
 
   async resizeImage(
     image: CapturedImage,
-    maxWidth: number,
-    maxHeight: number
+    _maxWidth: number,
+    _maxHeight: number
   ): Promise<CapturedImage> {
     return image;
   }

@@ -18,6 +18,10 @@ import { RootStackParamList } from '../navigation/AppNavigator';
 import ProductCard from '../components/ProductCard';
 
 type SearchScreenNavProp = NativeStackNavigationProp<RootStackParamList, 'Search'>;
+
+function ListSeparator() {
+  return <View style={styles.separator} />;
+}
 type SearchScreenRouteProp = RouteProp<RootStackParamList, 'Search'>;
 
 export default function SearchScreen() {
@@ -71,7 +75,9 @@ export default function SearchScreen() {
   }
 
   function renderFooter() {
-    if (!isFetchingNextPage) return null;
+    if (!isFetchingNextPage) {
+      return null;
+    }
     return (
       <View style={styles.footerLoader}>
         <ActivityIndicator size="small" color="#007AFF" />
@@ -108,7 +114,7 @@ export default function SearchScreen() {
           renderItem={renderProductItem}
           keyExtractor={(item) => item.barcode}
           contentContainerStyle={styles.listContent}
-          ItemSeparatorComponent={() => <View style={styles.separator} />}
+          ItemSeparatorComponent={ListSeparator}
           onEndReached={handleLoadMore}
           onEndReachedThreshold={0.5}
           ListFooterComponent={renderFooter}

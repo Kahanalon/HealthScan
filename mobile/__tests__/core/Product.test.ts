@@ -1,4 +1,4 @@
-import { Product, NutriScoreGrade, NutritionInfo, NutrientFlag } from '../../src/core/entities/Product';
+import { NutriScoreGrade } from '../../src/core/entities/Product';
 import { createMockProduct, createMockNutritionInfo, createMockFlag } from '../mocks/mockData';
 
 describe('Product', () => {

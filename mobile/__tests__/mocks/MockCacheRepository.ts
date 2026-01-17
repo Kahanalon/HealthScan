@@ -21,7 +21,9 @@ export class MockCacheRepository implements ICacheRepository {
 
   async getProduct(barcode: string): Promise<CachedProduct | null> {
     const product = this.products.get(barcode);
-    if (!product) return null;
+    if (!product) {
+      return null;
+    }
 
     if (product.expiresAt < new Date()) {
       this.products.delete(barcode);

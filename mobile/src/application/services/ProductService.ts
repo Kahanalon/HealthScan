@@ -1,7 +1,7 @@
 import { Product, ContributionData } from '../../core/entities/Product';
 import { ScanHistory, createScanHistoryId } from '../../core/entities/ScanHistory';
-import { ScoreResult, getGradeDescription } from '../../core/entities/ScoreResult';
-import { IApiClient, ProductResponse, SearchResponse } from '../../core/interfaces/IApiClient';
+import { ScoreResult } from '../../core/entities/ScoreResult';
+import { IApiClient, SearchResponse } from '../../core/interfaces/IApiClient';
 import { ICacheRepository } from '../../core/interfaces/ICacheRepository';
 
 export class ProductService {

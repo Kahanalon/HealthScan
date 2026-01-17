@@ -23,10 +23,10 @@ i18n.use(initReactI18next).init({
 
 export function setLanguage(locale: 'he' | 'en'): void {
   i18n.changeLanguage(locale);
-  const isRTL = locale === 'he';
-  if (I18nManager.isRTL !== isRTL) {
-    I18nManager.allowRTL(isRTL);
-    I18nManager.forceRTL(isRTL);
+  const shouldBeRTL = locale === 'he';
+  if (I18nManager.isRTL !== shouldBeRTL) {
+    I18nManager.allowRTL(shouldBeRTL);
+    I18nManager.forceRTL(shouldBeRTL);
   }
 }
 
