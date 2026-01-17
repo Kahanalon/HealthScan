@@ -57,5 +57,9 @@ public class ProductConfiguration : IEntityTypeConfiguration<Product>
         builder.Property(p => p.NutritionComplete).HasColumnName("nutrition_complete").HasDefaultValue(false);
         builder.Property(p => p.LastUpdated).HasColumnName("last_updated").HasDefaultValueSql("NOW()");
         builder.Property(p => p.CreatedAt).HasColumnName("created_at").HasDefaultValueSql("NOW()");
+
+        builder.Property(p => p.OffBarcode).HasColumnName("off_barcode").HasMaxLength(50);
+        builder.Property(p => p.OffSyncedAt).HasColumnName("off_synced_at");
+        builder.HasIndex(p => p.OffBarcode);
     }
 }

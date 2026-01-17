@@ -27,10 +27,13 @@ public static class DependencyInjection
         services.AddScoped<IContributionRepository, EfContributionRepository>();
         services.AddScoped<IScanEventRepository, EfScanEventRepository>();
         services.AddScoped<IScoringRuleRepository, EfScoringRuleRepository>();
+        services.AddScoped<IOffProductRepository, EfOffProductRepository>();
 
         services.AddSingleton<ICacheService, MemoryCacheService>();
 
-        services.AddHttpClient<IProductDataSource, OpenFoodFactsAdapter>();
+        services.AddHttpClient<OpenFoodFactsAdapter>();
+        services.AddScoped<IProductDataSource>(sp => sp.GetRequiredService<OpenFoodFactsAdapter>());
+        services.AddScoped<IOffDataSource>(sp => sp.GetRequiredService<OpenFoodFactsAdapter>());
 
         services.AddSingleton<IOcrService, StubOcrService>();
 
@@ -41,6 +44,10 @@ public static class DependencyInjection
         services.AddScoped<IProductService, ProductService>();
         services.AddScoped<IOcrOrchestrator, OcrOrchestrator>();
         services.AddScoped<IImportService, ImportService>();
+
+        services.AddScoped<IOffImportService, OffImportService>();
+        services.AddScoped<IOffSyncService, OffSyncService>();
+        services.AddScoped<IOffPullService, OffPullService>();
 
         return services;
     }

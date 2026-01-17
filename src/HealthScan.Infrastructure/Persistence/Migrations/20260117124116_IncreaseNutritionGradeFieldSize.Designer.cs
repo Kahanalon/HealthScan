@@ -5,6 +5,7 @@ using HealthScan.Domain.Entities.OpenFoodFacts;
 using HealthScan.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -13,9 +14,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace HealthScan.Infrastructure.Persistence.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260117124116_IncreaseNutritionGradeFieldSize")]
+    partial class IncreaseNutritionGradeFieldSize
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -987,8 +990,8 @@ namespace HealthScan.Infrastructure.Persistence.Migrations
                         .HasColumnName("eco_score_adjustments");
 
                     b.Property<string>("EcoScoreGrade")
-                        .HasMaxLength(20)
-                        .HasColumnType("character varying(20)")
+                        .HasMaxLength(5)
+                        .HasColumnType("character varying(5)")
                         .HasColumnName("eco_score_grade");
 
                     b.Property<int?>("EcoScoreOrigins")
@@ -1032,8 +1035,8 @@ namespace HealthScan.Infrastructure.Persistence.Migrations
                         .HasColumnName("nova_group");
 
                     b.Property<string>("NutriScoreGrade")
-                        .HasMaxLength(20)
-                        .HasColumnType("character varying(20)")
+                        .HasMaxLength(5)
+                        .HasColumnType("character varying(5)")
                         .HasColumnName("nutri_score_grade");
 
                     b.Property<int?>("NutriScoreScore")
@@ -1071,13 +1074,13 @@ namespace HealthScan.Infrastructure.Persistence.Migrations
                         .HasColumnName("nutrient_levels_sugars");
 
                     b.Property<string>("NutriscoreGrade2021")
-                        .HasMaxLength(20)
-                        .HasColumnType("character varying(20)")
+                        .HasMaxLength(5)
+                        .HasColumnType("character varying(5)")
                         .HasColumnName("nutriscore_grade_2021");
 
                     b.Property<string>("NutriscoreGrade2023")
-                        .HasMaxLength(20)
-                        .HasColumnType("character varying(20)")
+                        .HasMaxLength(5)
+                        .HasColumnType("character varying(5)")
                         .HasColumnName("nutriscore_grade_2023");
 
                     b.Property<int?>("NutriscoreNegativePoints2021")

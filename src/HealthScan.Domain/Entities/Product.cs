@@ -47,6 +47,9 @@ public class Product
     public DateTime LastUpdated { get; set; } = DateTime.UtcNow;
     public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 
+    public string? OffBarcode { get; set; }
+    public DateTime? OffSyncedAt { get; set; }
+
     public string DisplayName => NameHe ?? NameEn ?? "Unknown Product";
 
     public NutritionData GetNutritionPer100()
